@@ -1,24 +1,23 @@
 #!/bin/bash
 #SBATCH -J decode_avsr          # Your job name to be displayed by squeue
-#SBATCH -o /usr/users/roudi/whisper-flamingo/slurm/decode_slurm/whisper_video_%j.out   # path to write stdout, %j will be jobID
-#SBATCH -e /usr/users/roudi/whisper-flamingo/slurm/decode_slurm/whisper_video_%j.err    # path to write stderr, %j will be jobID
-#SBATCH --qos=regular
-#SBATCH --gres=gpu:1
+#SBATCH -o /home/wu/work/whisper-flamingo/slurm/decode_slurm/whisper_video_%j.out   # path to write stdout, %j will be jobID
+#SBATCH -e /home/wu/work/whisper-flamingo/slurm/decode_slurm/whisper_video_%j.err    # path to write stderr, %j will be jobID
+#SBATCH --gres=gpu
 #SBATCH --nodes=1
-#SBATCH --requeue # restart if killed
-#SBATCH --partition=a6,a5,2080
-##SBATCH --partition=a5,a6,2080
-#SBATCH --exclude sls-a6-5
-#SBATCH --mem=22G
+#SBATCH --partition=gpub
+#SBATCH --time=1-00:00:00
+#SBATCH --exclude=gpu[04]
+#SBATCH --mem=64GB
+#SBATCH --ntasks=1
 #SBATCH --ntasks-per-node=1 # assert ntasks_per_node == cfg.distributed_world_size // nnodes
 
 ## Set the python environment you want to use for your code
 PYTHON_VIRTUAL_ENVIRONMENT=whisper-flamingo
-CONDA_ROOT=/usr/users/roudi/vtenvs/anaconda3/
-source ${CONDA_ROOT}/etc/profile.d/conda.sh
-conda activate $PYTHON_VIRTUAL_ENVIRONMENT
+# CONDA_ROOT=/usr/users/roudi/vtenvs/anaconda3/
+# source ${CONDA_ROOT}/etc/profile.d/conda.sh
+source activate $PYTHON_VIRTUAL_ENVIRONMENT
 
-cd /usr/users/roudi/whisper-flamingo
+cd /home/wu/work/whisper-flamingo
 
 srun hostname
 echo $CUDA_VISIBLE_DEVICES
