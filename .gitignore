@@ -10,4 +10,4 @@ slurm/train_video_slurm/
 av_hubert/
 whisper/__pycache__/
 __pycache__/
-decode/
+decode/Insights/

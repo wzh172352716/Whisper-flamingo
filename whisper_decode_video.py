@@ -4,6 +4,7 @@ import json
 import argparse
 import numpy as np
 import torch
+import sys
 from torch import nn
 from scipy.io import wavfile
 import pandas as pd
@@ -96,7 +97,7 @@ length_sorter = LengthBatchSampler(batch_bins=SAMPLE_RATE * 40 if args.checkpoin
                             drop_last=False)
 
 dataloader = torch.utils.data.DataLoader(dataset,
-                    num_workers=8,
+                    num_workers=2,
                     collate_fn=WhisperVideoCollatorWithPadding(),
                     batch_sampler=length_sorter)
 

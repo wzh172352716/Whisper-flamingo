@@ -51,14 +51,14 @@ checkpoint_root=models/
 # checkpoint_root=models/checkpoint/
 checkpoint_path=${checkpoint_root}${checkpoint}
 decode_path=decode/
-av_hubert_path=../work/av_hubert/avhubert/
+av_hubert_path=/beegfs/work/wu/av_hubert/avhubert
 av_hubert_ckpt=models/large_noise_pt_noise_ft_433h_only_weights.pt
 use_original_whisper=0
 normalizer=fairseq
 
 # for lang in en ru el es fr it pt; do
 for lang in en; do 
-    for noise_snr in 1000 0; do
+    for noise_snr in 1000 0 ; do
         echo $modalities $lang $noise_snr
         sbatch slurm/whisper_decode.sh $lang \
                                 $model \

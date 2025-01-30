@@ -211,10 +211,11 @@ def add_noise(clean_wav, noise_wavs, noise_snr=0):
     return mixed
 
 def load_data(AUDIO_MAX_LENGTH, TEXT_MAX_LENGTH, langs=['en', 'ar', 'de', 'el', 'es', 'fr', 'it', 'pt', 'ru'],
-              muavic_root='/beegfs/data/shared/muavic/muavic', reduce_val=None, include_audio_lens=False,
+              muavic_root='/home/wu/work/data', reduce_val=None, include_audio_lens=False,
               AUDIO_MAX_LENGTH_VAL=480000, translate=False, lrs2=False):
     # reduce_val: If not None, keep this number of samples from the validation set
     audio_transcript_pair_list = {'train':[], 'valid':[], 'test':[]}
+    #print("1")
     for lang in langs:
         for split in audio_transcript_pair_list:
             if lrs2:

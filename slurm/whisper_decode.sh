@@ -6,6 +6,7 @@
 #SBATCH --nodes=1
 #SBATCH --partition=gpub
 #SBATCH --time=1-00:00:00
+#SBATCH --nodelist=gpu06        # Specify to use node gpu06
 #SBATCH --exclude=gpu[04]
 #SBATCH --mem=64GB
 #SBATCH --ntasks=1
@@ -13,9 +14,9 @@
 
 ## Set the python environment you want to use for your code
 PYTHON_VIRTUAL_ENVIRONMENT=whisper-flamingo
-# CONDA_ROOT=/usr/users/roudi/vtenvs/anaconda3/
-# source ${CONDA_ROOT}/etc/profile.d/conda.sh
-source activate $PYTHON_VIRTUAL_ENVIRONMENT
+CONDA_ROOT=/home/wu/miniconda3/
+source ${CONDA_ROOT}/etc/profile.d/conda.sh
+conda activate $PYTHON_VIRTUAL_ENVIRONMENT
 
 cd /home/wu/work/whisper-flamingo
 
